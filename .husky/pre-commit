@@ -1,11 +1,3 @@
-###
- # @Descripttion: 
- # @version: 1.5
- # @Author: qian
- # @Date: 2022-05-11 21:22:03
- # @LastEditors: qian
- # @LastEditTime: 2022-05-11 21:22:35
-### 
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
