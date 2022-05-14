@@ -8,6 +8,7 @@ import SvgIcon from '@/icons'
 import 'element-plus/dist/index.css'
 import '@/router/permission'
 import * as ELIcons from '@element-plus/icons-vue'
+import i18n from '@/i18n'
 
 // 实例化pinia
 const pinia = createPinia()
@@ -18,4 +19,4 @@ for (const iconName in ELIcons) {
 }
 
 SvgIcon(app)
-app.use(pinia).use(router).mount('#app')
+app.use(pinia).use(router).use(i18n).mount('#app')

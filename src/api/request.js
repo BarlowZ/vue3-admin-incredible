@@ -1,5 +1,7 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
+import { diffTokenTime } from '@/utils/auth'
+import { mainStore } from '@/store/index'
 
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
@@ -7,7 +9,13 @@ const service = axios.create({
 })
 
 service.interceptors.request.use(config => {
-  config.headers.Authorization = localStorage.getItem('token')
+  const store = mainStore()
+  const token = localStorage.getItem('token')
+  if (token && diffTokenTime()) {
+    store.logout()
+    return Promise.reject(new Error('token 失效了'))
+  }
+  config.headers.Authorization = token
   return config
 }, error => {
   return Promise.reject(new Error(error))
@@ -22,6 +30,7 @@ service.interceptors.response.use(response => {
     return Promise.reject(new Error(meta.msg))
   }
 }, error => {
+  console.log(error)
   error.response && ElMessage.error(error.response.data)
   return Promise.reject(new Error(error.response.data))
 })

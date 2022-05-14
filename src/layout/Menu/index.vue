@@ -7,6 +7,7 @@
     text-color="#fff"
     router
     unique-opened
+    :collapse="!store.siderType"
   >
     <el-sub-menu
       :index="item.id + ''"
@@ -29,7 +30,7 @@
           <el-icon>
             <component :is="icon"></component>
           </el-icon>
-          <span>{{ it.authName }}</span>
+          <span>{{ $t(`menus.${it.path}`) }}</span>
         </template>
       </el-menu-item>
     </el-sub-menu>
@@ -40,6 +41,8 @@
 import { ref } from 'vue'
 import { menuList } from '@/api/menu'
 import variables from '@/styles/variables.scss'
+import { mainStore } from '@/store/index'
+const store = mainStore()
 
 const iconList = ref(['user', 'setting', 'shop', 'tickets', 'pie-chart'])
 const icon = ref('menu')
