@@ -16,7 +16,7 @@
       }}</el-button>
     </el-row>
 
-    <el-table :data="tableData" stripe style="width: 100%">
+    <el-table :data="tableData" border stripe style="width: 100%">
       <el-table-column
         :width="item.width"
         :prop="item.prop"
